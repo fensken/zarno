@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import ToastProvider from "@/components/Providers/ToastProvider";
 
 export const metadata: Metadata = {
   title: "Zarno",
@@ -16,7 +17,10 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" className={GeistSans.className}>
-        <body>{children}</body>
+        <body>
+          <ToastProvider />
+          {children}
+        </body>
       </html>
     </ClerkProvider>
   );
