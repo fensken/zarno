@@ -93,7 +93,7 @@ const TitleForm: FC<TitleFormProps> = ({ initialData, courseId }) => {
                   <FormMessage />
                 </FormItem>
               )}
-            ></FormField>
+            />
 
             <div className="flex items-center gap-x-2">
               <Button disabled={!isValid || isSubmitting} type="submit">

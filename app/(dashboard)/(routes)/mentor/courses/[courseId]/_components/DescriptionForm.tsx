@@ -1,12 +1,14 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
-import { useRouter } from "next/navigation";
 import { FC, useState } from "react";
-import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 import * as z from "zod";
+import axios from "axios";
+import { Pencil } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import toast from "react-hot-toast";
+import { Course } from "@prisma/client";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -18,12 +20,9 @@ import {
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
-import { Pencil } from "lucide-react";
 
 interface DescriptionFormProps {
-  initialData: {
-    description: string;
-  };
+  initialData: Course;
   courseId: string;
 }
 
@@ -42,7 +41,9 @@ const DescriptionForm: FC<DescriptionFormProps> = ({
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: initialData,
+    defaultValues: {
+      description: initialData?.description || "",
+    },
   });
 
   const { isSubmitting, isValid } = form.formState;
@@ -104,7 +105,7 @@ const DescriptionForm: FC<DescriptionFormProps> = ({
                   <FormMessage />
                 </FormItem>
               )}
-            ></FormField>
+            />
 
             <div className="flex items-center gap-x-2">
               <Button disabled={!isValid || isSubmitting} type="submit">

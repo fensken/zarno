@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
 import TitleForm from "./_components/TitleForm";
 import DescriptionForm from "./_components/DescriptionForm";
+import ImageForm from "./_components/ImageForm";
 
 interface CourseIdPageProps {
   params: {
@@ -64,6 +65,7 @@ const CourseIdPage = async ({ params }: CourseIdPageProps) => {
 
         <TitleForm initialData={course} courseId={course.id} />
         <DescriptionForm initialData={course} courseId={course.id} />
+        <ImageForm initialData={course} courseId={course.id} />
       </div>
     </div>
   );
