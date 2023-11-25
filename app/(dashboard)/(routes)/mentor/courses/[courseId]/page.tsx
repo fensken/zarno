@@ -1,6 +1,6 @@
 import IconBadge from "@/components/IconBadge";
 import { auth } from "@clerk/nextjs";
-import { LayoutDashboard } from "lucide-react";
+import { CircleDollarSign, LayoutDashboard, ListChecks } from "lucide-react";
 import { redirect } from "next/navigation";
 
 import { db } from "@/lib/db";
@@ -8,6 +8,7 @@ import TitleForm from "./_components/TitleForm";
 import DescriptionForm from "./_components/DescriptionForm";
 import ImageForm from "./_components/ImageForm";
 import CategoryForm from "./_components/CategoryForm";
+import PriceForm from "./_components/PriceForm";
 
 interface CourseIdPageProps {
   params: {
@@ -68,19 +69,39 @@ const CourseIdPage = async ({ params }: CourseIdPageProps) => {
             <IconBadge icon={LayoutDashboard} />
             <h2 className="text-xl">Customize your course</h2>
           </div>
+
+          <TitleForm initialData={course} courseId={course.id} />
+          <DescriptionForm initialData={course} courseId={course.id} />
+          <ImageForm initialData={course} courseId={course.id} />
+          <CategoryForm
+            initialData={course}
+            courseId={course.id}
+            options={categories.map((category) => ({
+              label: category.name,
+              value: category.id,
+            }))}
+          />
         </div>
 
-        <TitleForm initialData={course} courseId={course.id} />
-        <DescriptionForm initialData={course} courseId={course.id} />
-        <ImageForm initialData={course} courseId={course.id} />
-        <CategoryForm
-          initialData={course}
-          courseId={course.id}
-          options={categories.map((category) => ({
-            label: category.name,
-            value: category.id,
-          }))}
-        />
+        <div className="space-y-6">
+          <div className="">
+            <div className="flex items-center gap-x-2">
+              <IconBadge icon={ListChecks} />
+
+              <h2 className="text-xl">Course chapters</h2>
+            </div>
+
+            <div className="">TODO: Chapters</div>
+          </div>
+
+          <div className="">
+            <div className="flex items-center gap-x-2">
+              <IconBadge icon={CircleDollarSign} />
+              <h2 className="text-xl">Sell your course</h2>
+            </div>
+            <PriceForm initialData={course} courseId={course.id} />
+          </div>
+        </div>
       </div>
     </div>
   );
