@@ -29,7 +29,7 @@ const ChaptersList: FC<ChaptersListProps> = ({ items, onReorder, onEdit }) => {
 
   useEffect(() => {
     setChapters(items);
-  }, []);
+  }, [items]);
 
   const onDragEnd = (result: DropResult) => {
     // checks if the drag event was outside or invalid

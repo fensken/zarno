@@ -18,7 +18,6 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import ChaptersList from "./ChaptersList";
@@ -68,13 +67,17 @@ const ChaptersForm: FC<ChaptersFormProps> = ({ initialData, courseId }) => {
       await axios.put(`/api/courses/${courseId}/chapters/reorder`, {
         list: updateData,
       });
-      toast.success("Chapters reordered successfully");
+      toast.success("Chapters reordered");
       router.refresh();
     } catch (error) {
       toast.error("Something went wrong");
     } finally {
       setIsUpdating(false);
     }
+  };
+
+  const onEdit = (id: string) => {
+    router.push(`/mentor/courses/${courseId}/chapters/${id}`);
   };
 
   return (
@@ -138,7 +141,7 @@ const ChaptersForm: FC<ChaptersFormProps> = ({ initialData, courseId }) => {
           {!initialData.chapters.length && "No chapters"}
           <ChaptersList
             items={initialData.chapters || []}
-            onEdit={() => {}}
+            onEdit={onEdit}
             onReorder={onReorder}
           />
         </div>
