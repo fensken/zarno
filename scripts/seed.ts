@@ -14,6 +14,7 @@ async function main() {
         { name: "Science" },
         { name: "Engineering" },
         { name: "Philosophy" },
+        { name: "Gaming" },
       ],
     });
 
@@ -21,7 +22,7 @@ async function main() {
   } catch (error) {
     console.log("Error seeding the database categories", error);
   } finally {
-    await database.disconnect();
+    await database.$disconnect();
   }
 }
 
