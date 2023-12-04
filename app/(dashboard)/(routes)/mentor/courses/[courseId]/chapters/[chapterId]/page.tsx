@@ -10,6 +10,7 @@ import ChapterDescriptionForm from "./_components/ChapterDescriptionForm";
 import ChapterAccessForm from "./_components/ChapterAccessForm";
 import ChapterVideoForm from "./_components/ChapterVideoForm";
 import Banner from "@/components/Banner";
+import ChapterActions from "./_components/ChapterActions";
 
 interface ChapterIdPageProps {
   params: { courseId: string; chapterId: string };
@@ -71,6 +72,13 @@ const ChapterIdPage = async ({ params }: ChapterIdPageProps) => {
 
                 <span>Complete all fields {completionText}</span>
               </div>
+
+              <ChapterActions
+                disabled={!isComplete}
+                courseId={params.courseId}
+                chapterId={params.chapterId}
+                isPublished={chapter.isPublished}
+              />
             </div>
           </div>
         </div>
