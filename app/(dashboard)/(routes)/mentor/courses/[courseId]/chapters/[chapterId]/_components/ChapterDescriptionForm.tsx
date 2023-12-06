@@ -66,15 +66,15 @@ const ChapterDescriptionForm: FC<ChapterDescriptionFormProps> = ({
   };
 
   return (
-    <div className="mt-6 border bg-slate-100 rounded-md p-4">
-      <div className="font-medium flex items-center justify-between">
+    <div className="p-4 mt-6 border rounded-md bg-slate-100">
+      <div className="flex items-center justify-between font-medium">
         Chapter description
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Cancel</>
           ) : (
             <>
-              <Pencil className="h-4 w-4 mr-2" />
+              <Pencil className="w-4 h-4 mr-2" />
               Edit description
             </>
           )}
@@ -88,7 +88,7 @@ const ChapterDescriptionForm: FC<ChapterDescriptionFormProps> = ({
             !initialData.description && "text-slate-500 italic"
           )}
         >
-          {initialData.description && "No description"}
+          {!initialData.description && "No description"}
           {initialData.description && (
             <Preview value={initialData.description} />
           )}
@@ -97,7 +97,7 @@ const ChapterDescriptionForm: FC<ChapterDescriptionFormProps> = ({
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-4 mt-4"
+            className="mt-4 space-y-4"
           >
             <FormField
               control={form.control}
