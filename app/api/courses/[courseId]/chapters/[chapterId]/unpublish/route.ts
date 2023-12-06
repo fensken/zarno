@@ -24,7 +24,6 @@ export async function PATCH(
     if (!courseOwner) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
-    0;
 
     const unpublishedChapter = await db.chapter.update({
       where: {

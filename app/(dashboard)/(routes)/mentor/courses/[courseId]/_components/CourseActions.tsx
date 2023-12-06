@@ -1,13 +1,15 @@
 "use client";
 
 import { FC, useState } from "react";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 import { Trash } from "lucide-react";
 import toast from "react-hot-toast";
 
+import { useConfettiStore } from "@/hooks/useConfettiStore";
+
 import ConfirmModal from "@/components/modals/ConfirmModal";
 import { Button } from "@/components/ui/button";
-import axios from "axios";
-import { useRouter } from "next/navigation";
 
 interface CourseActionsProps {
   disabled: boolean;
@@ -21,18 +23,19 @@ const CourseActions: FC<CourseActionsProps> = ({
   isPublished,
 }) => {
   const router = useRouter();
+  const confetti = useConfettiStore();
   const [isLoading, setIsLoading] = useState(false);
 
   const onClick = async () => {
     try {
       setIsLoading(true);
-
       if (isPublished) {
         await axios.patch(`/api/courses/${courseId}/unpublish`);
         toast.success("Course unpublished");
       } else {
         await axios.patch(`/api/courses/${courseId}/publish`);
         toast.success("Course published");
+        confetti.onOpen();
       }
 
       router.refresh();
