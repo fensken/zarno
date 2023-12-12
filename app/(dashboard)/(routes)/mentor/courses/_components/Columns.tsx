@@ -5,14 +5,17 @@ import { Course } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal, Pencil } from "lucide-react";
 
+import { cn } from "@/lib/utils";
+
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@radix-ui/react-dropdown-menu";
+import { Badge } from "@/components/ui/badge";
 
-export const columns: ColumnDef<Course>[] = [
+export const Columns: ColumnDef<Course>[] = [
   {
     accessorKey: "title",
     header: ({ column }) => {
@@ -40,6 +43,15 @@ export const columns: ColumnDef<Course>[] = [
         </Button>
       );
     },
+    cell: ({ row }) => {
+      const price = parseFloat(row.getValue("price") || "0");
+      const formattedPrice = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      }).format(price);
+
+      return <div>{formattedPrice}</div>;
+    },
   },
   {
     accessorKey: "isPublished",
@@ -52,6 +64,15 @@ export const columns: ColumnDef<Course>[] = [
           Published
           <ArrowUpDown className="w-4 h-4 ml-2" />
         </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const isPublished = row.getValue("isPublished") || false;
+
+      return (
+        <Badge className={cn("bg-slate-500", isPublished && "bg-sky-700")}>
+          {isPublished ? "Published" : "Draft"}
+        </Badge>
       );
     },
   },

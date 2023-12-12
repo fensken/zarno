@@ -1,11 +1,9 @@
-import { redirect } from "next/navigation";
-import Link from "next/link";
 import { auth } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
-import { Button } from "@/components/ui/button";
-import { DataTable } from "./_components/DataTable";
-import { columns } from "./_components/Columns";
 import { db } from "@/lib/db";
+import { Columns } from "./_components/Columns";
+import { DataTable } from "./_components/DataTable";
 
 const CoursesPage = async ({}) => {
   const { userId } = auth();
@@ -25,11 +23,7 @@ const CoursesPage = async ({}) => {
 
   return (
     <div className="p-6">
-      <Link href="/mentor/create">
-        <Button>New Course</Button>
-      </Link>
-
-      <DataTable columns={columns} data={courses} />
+      <DataTable columns={Columns} data={courses} />
     </div>
   );
 };
