@@ -11,10 +11,9 @@ async function main() {
         { name: "Fitness" },
         { name: "Content Creation" },
         { name: "Business" },
-        { name: "Science" },
+        { name: "Photography" },
         { name: "Engineering" },
-        { name: "Philosophy" },
-        { name: "Gaming" },
+        { name: "Science" },
       ],
     });
 
