@@ -40,6 +40,7 @@ const Categories: FC<CategoriesProps> = ({ items }) => {
             key={item.id}
             label={item.name}
             icon={iconMap[item.name]}
+            value={item.id}
           />
         );
       })}

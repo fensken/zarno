@@ -24,7 +24,6 @@ const CategoryItem: FC<CategoryItemProps> = ({ label, value, icon: Icon }) => {
   const isSelected = currentCategoryId === value;
 
   const onClick = () => {
-    // console.log("dfaslj");
     const url = qs.stringifyUrl(
       {
         url: pathname,
