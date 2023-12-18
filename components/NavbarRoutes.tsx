@@ -15,7 +15,7 @@ const NavbarRoutes: FC<NavbarRoutesProps> = ({}) => {
   const pathname = usePathname();
 
   const isMentorPage = pathname?.startsWith("/mentor");
-  const isPlayerPage = pathname?.includes("/chapter");
+  const isCoursePage = pathname?.includes("/courses");
   const isSearchPage = pathname === "/search";
 
   return (
@@ -27,7 +27,7 @@ const NavbarRoutes: FC<NavbarRoutesProps> = ({}) => {
       )}
 
       <div className="flex gap-x-2 ml-auto">
-        {isMentorPage || isPlayerPage ? (
+        {isMentorPage || isCoursePage ? (
           <Link href="/">
             <Button size="sm" variant="ghost">
               <LogOut className="h-4 w-4 mr-2" />
