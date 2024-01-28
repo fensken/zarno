@@ -5,6 +5,10 @@ import { getChapter } from "@/actions/getChapter";
 
 import Banner from "@/components/Banner";
 import VideoPlayer from "./_components/VideoPlayer";
+import CourseEnrollButton from "./_components/CourseEnrollButton";
+import { Separator } from "@/components/ui/separator";
+import Preview from "@/components/Preview";
+import { File } from "lucide-react";
 
 type pageProps = {
   params: {
@@ -65,6 +69,45 @@ const page = async ({ params }: pageProps) => {
             isLocked={isLocked}
             completeOnEnd={completeOnEnd}
           />
+        </div>
+
+        <div>
+          <div className="flex p-4 flex-col md:flex-row items-center justify-between">
+            <h2 className="text-2xl font-semibold mb-2">{chapter.title}</h2>
+
+            {purchase ? (
+              <div className="">{/* add course progress */}</div>
+            ) : (
+              <CourseEnrollButton
+                courseId={params.courseId}
+                price={course.price!}
+              />
+            )}
+          </div>
+          <Separator />
+
+          <div className="">
+            <Preview value={chapter.description!} />
+          </div>
+
+          {!!attachments.length && (
+            <>
+              <Separator />
+              <div className="p-4">
+                {attachments.map((attachment) => (
+                  <a
+                    href={attachment.url}
+                    target="_blank"
+                    key={attachment.id}
+                    className="flex items-center p-3 w-full bg-sky-200 border text-sky-700 rounded-md hover:underline"
+                  >
+                    <File />
+                    <p className="line-clamp-1">{attachment.name}</p>
+                  </a>
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>
