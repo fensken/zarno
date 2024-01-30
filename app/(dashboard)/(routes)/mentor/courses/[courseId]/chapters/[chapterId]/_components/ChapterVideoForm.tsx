@@ -42,6 +42,7 @@ const ChapterVideoForm: FC<ChapterVideoFormProps> = ({
       toggleEdit();
       router.refresh();
     } catch (error) {
+      console.error(error);
       toast.error("Something went wrong");
     }
   };
