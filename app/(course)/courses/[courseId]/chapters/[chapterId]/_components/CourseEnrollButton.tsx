@@ -1,8 +1,10 @@
 "use client";
 
+import { FC, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { formatPrice } from "@/lib/format";
-import { FC } from "react";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 type CourseEnrollButtonProps = {
   price: number;
@@ -13,8 +15,29 @@ const CourseEnrollButton: FC<CourseEnrollButtonProps> = ({
   price,
   courseId,
 }) => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const onClick = async () => {
+    try {
+      setIsLoading(true);
+
+      const response = await axios.post(`/api/courses/${courseId}/checkout`);
+
+      window.location.assign(response.data.url);
+    } catch {
+      toast.error("Something went wrong");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
-    <Button className="w-full md:w-auto" size="sm">
+    <Button
+      size="sm"
+      disabled={isLoading}
+      onClick={onClick}
+      className="w-full md:w-auto"
+    >
       Enroll for {formatPrice(price)}
     </Button>
   );

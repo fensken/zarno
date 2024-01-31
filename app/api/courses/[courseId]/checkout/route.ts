@@ -1,8 +1,9 @@
-import { db } from "@/lib/db";
-import { stripe } from "@/lib/stripe";
+import Stripe from "stripe";
 import { currentUser } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
-import Stripe from "stripe";
+
+import { db } from "@/lib/db";
+import { stripe } from "@/lib/stripe";
 
 export async function POST(
   req: Request,
@@ -32,7 +33,7 @@ export async function POST(
     });
 
     if (purchase) {
-      return new NextResponse("Already purchased", { status: 401 });
+      return new NextResponse("Already purchased", { status: 400 });
     }
 
     if (!course) {
@@ -79,9 +80,8 @@ export async function POST(
       customer: stripeCustomer.stripeCustomerId,
       line_items,
       mode: "payment",
-      // payment_method_types: ["card"],
       success_url: `${process.env.NEXT_PUBLIC_APP_URL}/courses/${course.id}?success=1`,
-      cancel_url: `${process.env.NEXT_PUBLIC_App_URL}/courses/${course.id}?canceled=1`,
+      cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/courses/${course.id}?canceled=1`,
       metadata: {
         courseId: course.id,
         userId: user.id,
