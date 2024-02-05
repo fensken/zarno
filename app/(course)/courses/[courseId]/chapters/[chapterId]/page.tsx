@@ -76,7 +76,14 @@ const page = async ({ params }: pageProps) => {
             <h2 className="text-2xl font-semibold mb-2">{chapter.title}</h2>
 
             {purchase ? (
-              <div className="">{/* add course progress */}</div>
+              <div className="">
+                {/* <CourseProgressButton
+                  chapterId={params.chapterId}
+                  courseId={params.courseId}
+                  nextChapterId={nextChapter?.id}
+                  isCompleted={!!userProgress?.isCompleted}
+                /> */}
+              </div>
             ) : (
               <CourseEnrollButton
                 courseId={params.courseId}
