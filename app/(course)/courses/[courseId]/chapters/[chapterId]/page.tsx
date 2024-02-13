@@ -9,6 +9,7 @@ import CourseEnrollButton from "./_components/CourseEnrollButton";
 import { Separator } from "@/components/ui/separator";
 import Preview from "@/components/Preview";
 import { File } from "lucide-react";
+import CourseProgressButton from "./_components/CourseProgressButton";
 
 type pageProps = {
   params: {
@@ -76,14 +77,12 @@ const page = async ({ params }: pageProps) => {
             <h2 className="text-2xl font-semibold mb-2">{chapter.title}</h2>
 
             {purchase ? (
-              <div className="">
-                {/* <CourseProgressButton
-                  chapterId={params.chapterId}
-                  courseId={params.courseId}
-                  nextChapterId={nextChapter?.id}
-                  isCompleted={!!userProgress?.isCompleted}
-                /> */}
-              </div>
+              <CourseProgressButton
+                chapterId={params.chapterId}
+                courseId={params.courseId}
+                nextChapterId={nextChapter?.id}
+                isCompleted={!!userProgress?.isCompleted}
+              />
             ) : (
               <CourseEnrollButton
                 courseId={params.courseId}
