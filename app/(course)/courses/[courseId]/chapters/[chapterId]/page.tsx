@@ -92,7 +92,7 @@ const page = async ({ params }: pageProps) => {
           </div>
           <Separator />
 
-          <div className="">
+          <div>
             <Preview value={chapter.description!} />
           </div>
 

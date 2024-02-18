@@ -24,7 +24,7 @@ const AnalyticsPage = async ({}: AnalyticsPageProps) => {
         <DataCard label="Total Sales" value={totalSales} />
       </div>
 
-      <Chart data={data} />
+      {data.length > 0 && <Chart data={data} />}
     </div>
   );
 };

@@ -122,7 +122,7 @@ const AttachmentForm: FC<AttachmentFormProps> = ({ initialData, courseId }) => {
           />
 
           <div className="text-xs text-muted-foreground mt-4">
-            And anything your students might need to complete the course.
+            And anything your users might need to complete the course.
           </div>
         </div>
       )}

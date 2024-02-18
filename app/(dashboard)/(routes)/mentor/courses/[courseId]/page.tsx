@@ -80,7 +80,7 @@ const CourseIdPage = async ({ params }: CourseIdPageProps) => {
   return (
     <>
       {!course.isPublished && (
-        <Banner label="This course is unpublished. It will not be visible to the students." />
+        <Banner label="This course is unpublished. It will not be visible to the users." />
       )}
 
       <div className="p-6">
