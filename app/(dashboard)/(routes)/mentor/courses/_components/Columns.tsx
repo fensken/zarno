@@ -87,23 +87,23 @@ export const Columns: ColumnDef<Course>[] = [
     cell: ({ row }) => {
       const { id } = row.original;
 
-      const router = useRouter();
-      const [isLoading, setIsLoading] = useState(false);
+      // const router = useRouter();
+      // const [isLoading, setIsLoading] = useState(false);
 
-      const onDelete = async () => {
-        try {
-          setIsLoading(true);
+      // const onDelete = async () => {
+      //   try {
+      //     setIsLoading(true);
 
-          await axios.delete(`/api/courses/${id}`);
+      //     await axios.delete(`/api/courses/${id}`);
 
-          toast.success("Course deleted");
-          router.refresh();
-        } catch (error) {
-          toast.error("Something went wrong");
-        } finally {
-          setIsLoading(false);
-        }
-      };
+      //     toast.success("Course deleted");
+      //     router.refresh();
+      //   } catch (error) {
+      //     toast.error("Something went wrong");
+      //   } finally {
+      //     setIsLoading(false);
+      //   }
+      // };
 
       return (
         <div className="w-fit flex gap-x-2">
@@ -112,13 +112,13 @@ export const Columns: ColumnDef<Course>[] = [
               aria-label="Edit Course"
               title="Edit Course"
               size="sm"
-              disabled={isLoading}
+              // disabled={isLoading}
             >
               <Pencil className="w-4 h-4" />
             </Button>
           </Link>
 
-          <ConfirmModal onConfirm={onDelete}>
+          {/* <ConfirmModal onConfirm={onDelete}>
             <Button
               aria-label="Delete Course"
               title="Delete Course"
@@ -127,7 +127,7 @@ export const Columns: ColumnDef<Course>[] = [
             >
               <Trash className="w-4 h-4" />
             </Button>
-          </ConfirmModal>
+          </ConfirmModal> */}
         </div>
       );
     },
