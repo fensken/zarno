@@ -91,8 +91,9 @@ const CourseIdPage = async ({ params }: CourseIdPageProps) => {
           className="flex items-center text-sm hover:opacity-75 transition mb-6"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
-          Back to course dashboard
+          Back to the course dashboard
         </Link>
+
         <div className="flex items-center justify-between">
           <div className="flex flex-col gap-y-2">
             <h1 className="text-2xl font-medium">Course setup</h1>
@@ -100,7 +101,7 @@ const CourseIdPage = async ({ params }: CourseIdPageProps) => {
               Complete all the fields: {completionText}
             </span>
           </div>
-          {/* {Add actions} */}
+
           <CourseActions
             disabled={!isCompleted}
             courseId={params.courseId}

@@ -63,7 +63,7 @@ const ChapterIdPage = async ({ params }: ChapterIdPageProps) => {
               className="flex items-center text-sm hover:opacity-75 transition mb-6"
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to course setup
+              Back to the course setup
             </Link>
 
             <div className="flex items-center justify-between w-full">
