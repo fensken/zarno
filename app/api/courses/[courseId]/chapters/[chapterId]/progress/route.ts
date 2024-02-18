@@ -15,16 +15,16 @@ export async function PUT(
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    const courseOwner = await db.course.findUnique({
-      where: {
-        id: params.courseId,
-        userId: userId,
-      },
-    });
+    // const courseOwner = await db.course.findUnique({
+    //   where: {
+    //     id: params.courseId,
+    //     userId: userId,
+    //   },
+    // });
 
-    if (!courseOwner) {
-      return new NextResponse("Unauthorized", { status: 401 });
-    }
+    // if (!courseOwner) {
+    //   return new NextResponse("Unauthorized", { status: 401 });
+    // }
 
     const userProgress = await db.userProgress.upsert({
       where: {

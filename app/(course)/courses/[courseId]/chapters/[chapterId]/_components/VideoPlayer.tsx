@@ -55,7 +55,7 @@ const VideoPlayer = ({
       toast.success("Progress updated");
       router.refresh();
     } catch (error) {
-      toast.error("SOmething went wrong");
+      toast.error("Something went wrong");
     }
   };
 
