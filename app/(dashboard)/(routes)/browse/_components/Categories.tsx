@@ -45,6 +45,7 @@ const Categories: FC<CategoriesProps> = ({ items }) => {
   return (
     <>
       <div className="flex items-center pb-2 overflow-x-auto gap-x-2">
+        
         {/* All category button */}
         <button
           onClick={() => {
