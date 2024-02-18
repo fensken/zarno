@@ -16,11 +16,11 @@ const NavbarRoutes: FC<NavbarRoutesProps> = ({}) => {
 
   const isMentorPage = pathname?.startsWith("/mentor");
   const isCoursePage = pathname?.includes("/courses");
-  const isSearchPage = pathname === "/search";
+  const isBrowsePage = pathname === "/browse";
 
   return (
     <>
-      {isSearchPage && (
+      {isBrowsePage && (
         <div className="hidden md:block">
           <SearchInput />
         </div>

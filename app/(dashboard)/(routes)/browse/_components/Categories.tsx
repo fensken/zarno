@@ -36,12 +36,14 @@ const Categories: FC<CategoriesProps> = ({ items }) => {
     <div className="flex items-center pb-2 overflow-x-auto gap-x-2">
       {items.map((item) => {
         return (
-          <CategoryItem
-            key={item.id}
-            label={item.name}
-            icon={iconMap[item.name]}
-            value={item.id}
-          />
+          <>
+            <CategoryItem
+              key={item.id}
+              label={item.name}
+              icon={iconMap[item.name]}
+              value={item.id}
+            />
+          </>
         );
       })}
     </div>
