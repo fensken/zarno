@@ -13,6 +13,7 @@ import {
   FcOldTimeCamera,
   FcSalesPerformance,
   FcSportsMode,
+  FcCurrencyExchange,
 } from "react-icons/fc";
 import { IconType } from "react-icons";
 
@@ -32,6 +33,7 @@ const iconMap: Record<Category["name"], IconType> = {
   Photography: FcOldTimeCamera,
   Engineering: FcEngineering,
   Science: FcBiotech,
+  Finance: FcCurrencyExchange,
 };
 
 const Categories: FC<CategoriesProps> = ({ items }) => {
@@ -43,6 +45,7 @@ const Categories: FC<CategoriesProps> = ({ items }) => {
   return (
     <>
       <div className="flex items-center pb-2 overflow-x-auto gap-x-2">
+        <FcCurrencyExchange />
         {/* All category button */}
         <button
           onClick={() => {
