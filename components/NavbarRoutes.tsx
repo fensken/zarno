@@ -31,7 +31,11 @@ const NavbarRoutes: FC<NavbarRoutesProps> = ({}) => {
           <Link href="/">
             <Button size="sm" variant="ghost">
               <LogOut className="h-4 w-4 mr-2" />
-              Exit
+              {isMentorPage
+                ? "Exit mentor mode"
+                : isCoursePage
+                ? "Exit course"
+                : "Exit"}
             </Button>
           </Link>
         ) : (
