@@ -5,7 +5,7 @@ import SidebarRoutes from "./SidebarRoutes";
 const Sidebar = () => {
   return (
     <div className="h-full border-r flex flex-col overflow-y-auto bg-white shadow-sm">
-      <div className="p-4">
+      <div className="py-2 px-4">
         <Link href="/">
           <Logo />
         </Link>

@@ -4,9 +4,9 @@ const Logo = () => {
   return (
     <Image
       height={80}
-      width={100}
+      width={152}
       alt="logo"
-      src="/logo.png"
+      src="/zarno-logo.png"
       className="rounded-md"
     />
   );
