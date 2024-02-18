@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Course } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
-import { ArrowUpDown, MoreHorizontal, Pencil } from "lucide-react";
+import { ArrowUpDown, MoreHorizontal, Pencil, Trash } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -14,6 +14,11 @@ import {
   DropdownMenuTrigger,
 } from "@radix-ui/react-dropdown-menu";
 import { Badge } from "@/components/ui/badge";
+import ConfirmModal from "@/components/modals/ConfirmModal";
+import { useState } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export const Columns: ColumnDef<Course>[] = [
   {
@@ -78,28 +83,79 @@ export const Columns: ColumnDef<Course>[] = [
   },
   {
     id: "actions",
+    accessorKey: "Actions",
     cell: ({ row }) => {
       const { id } = row.original;
 
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="w-8 h-4 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="w-4 h-4" />
-            </Button>
-          </DropdownMenuTrigger>
+      const router = useRouter();
+      const [isLoading, setIsLoading] = useState(false);
 
-          <DropdownMenuContent align="end">
-            <Link href={`/mentor/courses/${id}`} className="bg-red">
-              <DropdownMenuItem>
-                <Pencil className="w-4 h-4 mr-2" />
-                Edit
-              </DropdownMenuItem>
-            </Link>
-          </DropdownMenuContent>
-        </DropdownMenu>
+      const onDelete = async () => {
+        try {
+          setIsLoading(true);
+
+          await axios.delete(`/api/courses/${id}`);
+
+          toast.success("Course deleted");
+          router.refresh();
+        } catch (error) {
+          toast.error("Something went wrong");
+        } finally {
+          setIsLoading(false);
+        }
+      };
+
+      return (
+        <div className="w-fit flex gap-x-2">
+          <Link href={`/mentor/courses/${id}`} className="bg-red flex">
+            <Button
+              aria-label="Edit Course"
+              title="Edit Course"
+              size="sm"
+              disabled={isLoading}
+            >
+              <Pencil className="w-4 h-4" />
+            </Button>
+          </Link>
+
+          <ConfirmModal onConfirm={onDelete}>
+            <Button
+              aria-label="Delete Course"
+              title="Delete Course"
+              size="sm"
+              disabled={isLoading}
+            >
+              <Trash className="w-4 h-4" />
+            </Button>
+          </ConfirmModal>
+        </div>
       );
     },
   },
+  // {
+  //   id: "actions",
+  //   cell: ({ row }) => {
+  //     const { id } = row.original;
+
+  //     return (
+  //       <DropdownMenu>
+  //         <DropdownMenuTrigger asChild>
+  //           <Button variant="ghost" className="w-8 h-4 p-0">
+  //             <span className="sr-only">Open menu</span>
+  //             <MoreHorizontal className="w-4 h-4" />
+  //           </Button>
+  //         </DropdownMenuTrigger>
+
+  //         <DropdownMenuContent align="end">
+  //           <Link href={`/mentor/courses/${id}`} className="bg-red">
+  //             <DropdownMenuItem>
+  //               <Pencil className="w-4 h-4 mr-2" />
+  //               Edit
+  //             </DropdownMenuItem>
+  //           </Link>
+  //         </DropdownMenuContent>
+  //       </DropdownMenu>
+  //     );
+  //   },
+  // },
 ];
