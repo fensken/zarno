@@ -1,6 +1,7 @@
 import IconBadge from "@/components/IconBadge";
 import { auth } from "@clerk/nextjs";
 import {
+  ArrowLeft,
   CircleDollarSign,
   File,
   LayoutDashboard,
@@ -18,6 +19,7 @@ import AttachmentForm from "./_components/AttachmentForm";
 import ChaptersForm from "./_components/ChaptersForm";
 import Banner from "@/components/Banner";
 import CourseActions from "./_components/CourseActions";
+import Link from "next/link";
 
 interface CourseIdPageProps {
   params: {
@@ -84,6 +86,13 @@ const CourseIdPage = async ({ params }: CourseIdPageProps) => {
       )}
 
       <div className="p-6">
+        <Link
+          href={`/mentor/courses`}
+          className="flex items-center text-sm hover:opacity-75 transition mb-6"
+        >
+          <ArrowLeft className="h-4 w-4 mr-2" />
+          Back to course dashboard
+        </Link>
         <div className="flex items-center justify-between">
           <div className="flex flex-col gap-y-2">
             <h1 className="text-2xl font-medium">Course setup</h1>
