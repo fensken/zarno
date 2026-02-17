@@ -35,7 +35,7 @@
     "cmdk": "^0.2.0",
     "geist": "^1.1.0",
     "lucide-react": "^0.292.0",
-    "next": "14.0.0",
+    "next": "14.2.35",
     "query-string": "^8.1.0",
     "react": "^18",
     "react-confetti": "^6.1.0",
